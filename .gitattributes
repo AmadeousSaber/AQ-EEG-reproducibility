@@ -1,0 +1,8 @@
+# Preserve authoritative CSV bytes across platforms.
+* text=auto eol=lf
+*.csv -text -eol whitespace=cr-at-eol
+*.m text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.cff text eol=lf

@@ -1,0 +1,5 @@
+# Tested with Python 3.12.14 for the public figure-input check.
+numpy==2.3.5
+pandas==3.0.1
+matplotlib==3.11.1
+Pillow==12.3.0

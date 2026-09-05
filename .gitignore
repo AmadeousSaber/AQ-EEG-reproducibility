@@ -1,0 +1,29 @@
+# Participant-level data and credentials are never release inputs.
+/analysis_inputs/
+/data/
+/manifests/subject_manifest.csv
+/manifests/graph_seed_manifest.csv
+**/plot_data*.csv
+*.mat
+*.xlsx
+*.set
+*.fdt
+*.cdt
+*.edf
+*.bdf
+*.docx
+*.pdf
+*.png
+*.tiff
+*.svg
+.env*
+*.pem
+*.key
+*.log
+__pycache__/
+*.pyc
+/work/
+/outputs/
+/5_paper/figures_v2/
+# MATLAB creates result CSVs here; publish only the immutable reference copies.
+/4_corr/*.csv

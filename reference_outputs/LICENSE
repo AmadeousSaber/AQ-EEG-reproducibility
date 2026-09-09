@@ -1,0 +1,26 @@
+Aggregate results license
+
+Copyright (c) 2026 Jianyi Liu, Xuan Yao, and Xiaobin Ding
+
+The 13 aggregate statistical CSV files in reference_outputs/4_corr are
+licensed under the Creative Commons Attribution 4.0 International Public
+License (SPDX: CC-BY-4.0), to the extent that copyright or similar rights
+apply and are held by the authors.
+
+License: https://creativecommons.org/licenses/by/4.0/
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode.en
+
+Retain attribution to Jianyi Liu, Xuan Yao, and Xiaobin Ding, identify the
+AQ-EEG-reproducibility repository and version used, link to the license, and
+indicate any changes. See CITATION.cff in the repository root for citation
+metadata. No endorsement by the authors is implied.
+
+These materials are offered as-is and without warranties, subject to the
+disclaimers and limitations in Section 5 of the license. The license does
+not create restrictions on facts or other uses that do not require
+permission under applicable law.
+
+This notice applies to the unchanged aggregate CSV files originally
+deposited in release v1.0.0 as well as the corresponding files in this
+licensing update. It does not license participant-level data, EEG
+recordings, third-party software, atlas files, or journal articles.

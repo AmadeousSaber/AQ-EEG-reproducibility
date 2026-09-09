@@ -67,4 +67,4 @@ Likewise, `permFL` denotes the implementation-specific residual-permutation calc
 
 This public release contains scripts and aggregate results only. Participant-level files are not released. A procedure for requesting those files has not been established in this repository; no promise of access should be inferred.
 
-Use `CITATION.cff` to cite this versioned software and aggregate-results companion. A GitHub release/tag and commit identify the published snapshot; no DOI has been assigned by GitHub. See `LICENSES.md` for the current reuse-license status and third-party exclusions.
+Use `CITATION.cff` to cite this versioned software and aggregate-results companion. A GitHub release/tag and commit identify the published snapshot; no DOI has been assigned by GitHub. Original code and associated documentation are licensed under MIT; the 13 aggregate statistical CSV tables are licensed under CC BY 4.0. See [LICENSES.md](LICENSES.md) for the separate scopes, attribution and third-party exclusions. The license notices were added on 9 September 2026 and apply to the unchanged v1.0.0 materials; the release tag, scripts and data have not been altered.

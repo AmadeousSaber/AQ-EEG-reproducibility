@@ -1,0 +1,2 @@
+bootstrap_draws,valid_draws,zero_brain_scale_draws,rank_deficient_draws,degenerate_outcome_draws,observed_beta_brain_standardized,percentile95_beta_lo,percentile95_beta_hi,descriptive_sign_retention,fraction_beta_positive,fraction_beta_negative,percentile95_beta_divided_by_AQ_SD_lo,percentile95_beta_divided_by_AQ_SD_hi
+5000,5000,0,0,0,-1.6166067744521,-2.4561056154164,-0.942719471989319,0.9998,0.0002,0.9998,-1.25414141216457,-0.455209767711037

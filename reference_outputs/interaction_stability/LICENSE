@@ -1,0 +1,15 @@
+Aggregate results license — version 1.1.0 additions
+
+Copyright (c) 2026 Jianyi Liu, Xuan Yao, and Xiaobin Ding
+
+The five aggregate CSV files in this directory are licensed under Creative
+Commons Attribution 4.0 International (SPDX: CC-BY-4.0), to the extent the
+authors hold copyright or similar rights.
+
+License: https://creativecommons.org/licenses/by/4.0/
+Legal text: https://creativecommons.org/licenses/by/4.0/legalcode.en
+
+Attribute the authors and AQ-EEG-reproducibility version used, link to the
+license and indicate modifications. No endorsement is implied. The license
+does not grant rights in participant-level data, third-party materials or
+uses outside the authors' rights. Root software is separately MIT licensed.

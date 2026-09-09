@@ -1,70 +1,72 @@
 # AQ EEG reproducibility
 
-Analysis scripts and aggregate results accompanying **Self-reported attention to detail and visual network organization in resting-state EEG**, by Jianyi Liu, Xuan Yao, and Xiaobin Ding.
+Version 1.1.0 accompanies **Self-reported attention to detail and visual network organization in resting-state EEG**, by Jianyi Liu, Xuan Yao, and Xiaobin Ding.
 
-This compact release supports independent checking of the reported screening results: 20,928 tests, 320 local false-discovery-rate families, and 14 retained associations from 11 families. It also provides the original analysis and figure-generation code for methodological inspection. The leading association concerns self-reported attention to detail and mean degree of visual-labeled nodes in eyes-open beta-AEC graphs.
+The repository provides analysis scripts and **aggregate results only**. Its 21 statistical CSVs comprise 13 unchanged historical tables and eight revision-specific tables (the new tables total 13,940 bytes). No participant-level AQ/demographic observations, EEG, connectivity/graph matrices, design matrices, individual residuals, deletion traces, or bootstrap draws are released.
 
-**No participant-level data are distributed.** The 13 CSV files contain test-level or model-level summaries, not individual observations. Their combined size is 3,215,399 bytes (about 3.07 MiB). Raw and post-ICA EEG, connectivity matrices, per-participant graph features, AQ/demographic records, design matrices, individual residuals, and the scatterplot figure are excluded.
+## What changed in v1.1.0
 
-## Verify the public results
+The primary correlation screen is unchanged: 20,928 tests in 320 local false-discovery-rate families, with 14 retained associations from 11 families. The original v1.0.0 files remain available unchanged for provenance.
 
-With Python 3.10 or newer, from this repository's root:
+The seven exploratory follow-up models now use the same full-minus-reduced R² statistic on the observed outcome and every residual-permuted pseudo-outcome. Both models are refitted on each pseudo-outcome. A partial-F companion uses the identical permutations. Bootstrap intervals re-estimate standardization/PC1 within the fixed selected feature sets. Model features, observed R²/ΔR², and restricted-scope leave-one-out estimates are unchanged.
+
+A targeted stability assessment is supplied for the eyes-open communication-by-sex interaction identified in that audit. Its deletion, robust-SE, signed-bootstrap and fixed-design null checks are **post hoc sensitivity analyses**, not independent discovery or replication. The seven-model table remains the source for the reported primary interaction p/q values; the targeted audit does not replace them with a different random-seed calculation.
+
+## Verify without participant data
+
+Python 3.10 or newer; no third-party packages are needed:
 
 ```sh
 python scripts/verify_public_results.py
+python scripts/verify_revised_results.py
 python -m unittest discover -s tests -v
 ```
 
-The verification uses only the Python standard library. It checks all 13 frozen CSV checksums, verifies row/sample counts and Fisher intervals, recomputes the local and broader Benjamini-Hochberg corrections, and checks arithmetic in the regression summaries. Expected output includes:
+The historical checker and its 13-file `data_manifest.json` are unchanged. The revised checker validates the eight new checksums/row counts, plus-one permutation p values, separate seven-model BH corrections, interval structure, summary arithmetic and the focal stability summaries. These checks inspect published aggregates; they do not re-estimate resampling distributions from participant data.
 
-```text
-tests: 20928
-local_families: 320
-local_hits: 14
-hit_families: 11
-band_pooled_survivors: 0
-studywide_survivors: 0
-reported_followup_units: 7
+## Contents and manuscript mapping
+
+| Location | Contents and role |
+| --- | --- |
+| `reference_outputs/4_corr/` | Twelve complete correlation tables and the historical eight-row regression table; unchanged v1.0.0 provenance. |
+| `reference_outputs/4_corr_v2/` | Current seven-model regression summary, 28-row paired-ΔR²/partial-F permutation table and seven-row bootstrap comparison. Source for revised Table 4 and Figure 4. |
+| `reference_outputs/interaction_stability/` | Five aggregate focal-interaction diagnostics; no individual deletion trace or resampling draws. |
+| `data_manifest.json`, `revised_manifest.json` | Separate historical and revision-specific SHA-256/metadata inventories. |
+| `4_corr/step6_hierarchical_regression_v2.m` | Standalone revised follow-up analysis for holders of authorized private design inputs. |
+| `4_corr/step7_interaction_stability.m` | Standalone targeted interaction sensitivity workflow for authorized private inputs. |
+| `scripts/`, `tests/`, `docs/` | Public checking, aggregate figure entry points, tests, variable definitions and reproduction scope. |
+
+Figures 1 and 2 use unchanged screening tables. Revised Figure 4 uses the new seven-model summary. Figure 3 depends on participant residuals and is neither distributed nor rendered by the public entry point.
+
+## Aggregate figures
+
+```sh
+python -m pip install -r requirements-figures.txt
+python scripts/render_public_figures.py --check-inputs
+python scripts/render_public_figures.py
+python 5_paper/build_figure4_v3.py
 ```
 
-This is an aggregate-result audit, not re-estimation of correlations from individual data. Bootstrap, permutation, leave-one-out estimates, graph computation, and source reconstruction cannot be rerun from this public release alone.
+The public entry point renders current Figures 1, 2 and 4 as previews in `outputs/figures/`; `--historical` selects the historical Figure 4. The final command exports revised Figure 4 as SVG/PDF/PNG and RGB 600-dpi TIFF. It reads only the checksum-locked aggregate summary.
 
-## Contents
+## MATLAB analysis and preprocessing provenance
 
-```text
-reference_outputs/4_corr/   12 complete correlation tables and one regression table
-data_manifest.json         SHA-256 hashes of the 13 aggregate CSV files
-scripts/                   Public verification and summary-figure entry points
-tests/                     Tests for the public verification workflow
-4_corr/                    Original MATLAB statistics and residual-export scripts
-2_main_process/            Original graph and post-ICA feature audit scripts
-5_paper/                   Original Python figure-generation scripts
-tools/                     Full-pipeline comparison helpers requiring private inputs
-docs/                      Variable definitions, provenance, and access scope
+The original MATLAB scripts remain available unchanged. `run_pipeline('stats')` invokes the historical pipeline, not the revised follow-up entry point, and requires private inputs; it is not a public quick-start command. To run the revision with an authorized complete copy:
+
+```matlab
+addpath('4_corr');
+step6_hierarchical_regression_v2
+step7_interaction_stability
 ```
 
-## Figures and tables
+Existing v2 outputs require an explicit `step6_hierarchical_regression_v2(true)` refresh. See each script for its inputs and outputs; do not publish its participant-level MAT or trace outputs.
 
-The correlation tables support the aggregate profiles in Figures 1 and 2 and the candidate associations in Table 2. The regression table supports Table 4 and Figure 4. Figure 3 requires participant-level residuals and is not distributed; the public figure entry point never loads or renders it.
+The analysis environment used MATLAB R2024b and Statistics and Machine Learning Toolbox. Preprocessing used a **study-specific adaptation of DISCOVER-EEG**, based on an upstream distributed codebase; the historical local label “v2.1” is not an official DISCOVER-EEG release identifier. Graph construction also incorporated the verified true-upper-triangle density correction. Other external dependencies include BCT 2019-03-03, EEGLAB 2024.0 and FieldTrip 2024-07-01. Third-party tools/atlas files are not redistributed. The public `pipeline_config.m` uses portable project-relative data paths and environment variables for external software.
 
-The plotting routines in `5_paper/build_figures123_v2.py` remain unchanged. Its default entry point checks private residual data and therefore cannot run on this public package alone. Use the dedicated public entry point described in `docs/REPRODUCTION_SCOPE.md` for Figures 1, 2, and 4. Historical `v2` script names refer to figure revisions; their outputs were verified against the images embedded in the v8 manuscript.
+## Interpretation, access and license
 
-## Original MATLAB analysis
+The study was not preregistered. Historical `family=confirm` selects seven paper units but is not a confirmatory-design claim. New tables instead label them `exploratory_fixed_units`; do not apply the old `confirm` filter to the revised table. The legacy `*_permFL` column names are retained for compatibility in the revised summary, but now explicitly denote paired-ΔR² residual-permutation checks. Read [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md) and [REPRODUCTION_SCOPE.md](docs/REPRODUCTION_SCOPE.md) for the distinct historical/current definitions.
 
-The scripts preserve the original computations. The full entry point is `run_pipeline('stats')`, but it requires the private AQ table, canonical graphs and full reference set. It is **not** the quick-start command for this public release.
+Participant-level files are not publicly released. This repository does not establish a request/access procedure or promise later access. Full re-estimation requires authorized private inputs; there are no synthetic stand-ins. No DOI has been assigned here; cite the version and GitHub snapshot using `CITATION.cff`.
 
-The authoritative environment used MATLAB R2024b and Statistics and Machine Learning Toolbox. Graph/source workflows additionally used DISCOVER-EEG v2.1 with the true-upper-triangle density fix, BCT 2019-03-03, EEGLAB 2024.0, FieldTrip 2024-07-01, and Parallel Computing Toolbox. These third-party tools are not redistributed. Set `DISCOVER_EEG_HOME`, `BCT_HOME`, `EEGLAB_HOME`, and `FIELDTRIP_HOME` when using an authorized complete private analysis copy.
-
-The public copy of `pipeline_config.m` removes machine-specific fallback paths. The public `tools/verify_results.m` adds explicit checks for the complete private reference set so that missing design matrices cannot produce a misleading success message. No statistical formula, screening rule, random seed, or frozen result was changed for publication.
-
-## Interpretation of historical labels
-
-The study was not preregistered. The machine label `family=confirm` selects the seven reported follow-up units; it does not indicate confirmatory or preregistered analysis. The eighth regression row is a historical exploratory unit and remains available for transparency, but it is not a Table 4 unit.
-
-Likewise, `permFL` denotes the implementation-specific residual-permutation calculation described in Methods; the internal prediction procedure was conditional and restricted in scope, not a fully nested repetition of the complete discovery process. See `docs/DATA_DICTIONARY.md` before interpreting these fields.
-
-## Access and citation
-
-This public release contains scripts and aggregate results only. Participant-level files are not released. A procedure for requesting those files has not been established in this repository; no promise of access should be inferred.
-
-Use `CITATION.cff` to cite this versioned software and aggregate-results companion. A GitHub release/tag and commit identify the published snapshot; no DOI has been assigned by GitHub. Original code and associated documentation are licensed under MIT; the 13 aggregate statistical CSV tables are licensed under CC BY 4.0. See [LICENSES.md](LICENSES.md) for the separate scopes, attribution and third-party exclusions. The license notices were added on 9 September 2026 and apply to the unchanged v1.0.0 materials; the release tag, scripts and data have not been altered.
+Original code/documentation are MIT licensed; all 21 aggregate CSV tables are CC BY 4.0 licensed. The original notices are retained and the new directories have explicit CC BY 4.0 notices. Third-party materials and participant-level data are outside these grants. See [LICENSES.md](LICENSES.md) and [CHANGELOG.md](CHANGELOG.md).

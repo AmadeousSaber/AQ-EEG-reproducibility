@@ -27,3 +27,5 @@ __pycache__/
 /5_paper/figures_v2/
 # MATLAB creates result CSVs here; publish only the immutable reference copies.
 /4_corr/*.csv
+/4_corr/interaction_stability_v1/
+/5_paper/figures_v3/

@@ -1,0 +1,2 @@
+deletions,beta_min,beta_median,beta_max,same_direction_count,delta_R2_min,delta_R2_median,delta_R2_max,paired_delta_p_min,paired_delta_p_median,paired_delta_p_max,paired_delta_p_le_05_count,partial_F_p_min,partial_F_p_median,partial_F_p_max,partial_F_p_le_05_count
+39,-1.88415579441707,-1.60738491654358,-1.48792832632657,39,0.119861509815803,0.141602088480803,0.222383731465716,0.0005999400059994,0.0037996200379962,0.011998800119988,39,0.0005999400059994,0.0042995700429957,0.0121987801219878,39

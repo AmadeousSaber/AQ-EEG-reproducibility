@@ -1,0 +1,72 @@
+{
+  "version": "1.1.0",
+  "date": "2026-09-10",
+  "scope": "Eight additional aggregate-only tables; historical data_manifest.json remains unchanged.",
+  "participant_level_data_included": false,
+  "license": "CC-BY-4.0",
+  "seeds": {
+    "seven_unit_permutations": 20260910,
+    "seven_unit_bootstrap": 20260911,
+    "focal_deletion_permutations": 20260913,
+    "focal_stratified_bootstrap": 20260914,
+    "focal_interaction_null": 20260915
+  },
+  "resampling": {
+    "seven_unit_permutations": 10000,
+    "seven_unit_bootstrap": 5000,
+    "focal_deletion_permutations": 10000,
+    "focal_stratified_bootstrap": 5000,
+    "focal_null_simulations": 1000,
+    "focal_null_inner_permutations": 999
+  },
+  "files": [
+    {
+      "path": "reference_outputs/4_corr_v2/results_regression_v2_bootstrap.csv",
+      "sha256": "373aafc9c7a5af0fd55ed78f8649199c1a96de8e3c693a81efb2fd1f363950ae",
+      "bytes": 1668,
+      "rows": 7
+    },
+    {
+      "path": "reference_outputs/4_corr_v2/results_regression_v2_permutations.csv",
+      "sha256": "06c30b52c84fd65952cb16d9fb248049944100b2979eed59c8121a3e7bc9ad92",
+      "bytes": 4611,
+      "rows": 28
+    },
+    {
+      "path": "reference_outputs/4_corr_v2/results_regression_v2_summary.csv",
+      "sha256": "4a6975e1af3cb37903484e532f8860b2d57a02161730be329d8a336c8ff9460b",
+      "bytes": 5017,
+      "rows": 7
+    },
+    {
+      "path": "reference_outputs/interaction_stability/bootstrap_summary.csv",
+      "sha256": "c987ced16f48ee35e8e738808e418972e15be655da45fcb61733837de2c48e64",
+      "bytes": 450,
+      "rows": 1
+    },
+    {
+      "path": "reference_outputs/interaction_stability/delete_one_summary.csv",
+      "sha256": "894a267990da6aa41163d649224127e5eb54ae95e182c810acb9cf942f01fd03",
+      "bytes": 500,
+      "rows": 1
+    },
+    {
+      "path": "reference_outputs/interaction_stability/interaction_null_summary.csv",
+      "sha256": "ba42937051abb7a555a12635a8cb3ef61ab81ae2b66f56ce732a544a6f6e2da5",
+      "bytes": 382,
+      "rows": 3
+    },
+    {
+      "path": "reference_outputs/interaction_stability/maximum_cook_deletion.csv",
+      "sha256": "1cfc6be75a00256302dc4f7ffdabe53f7361b53605063e101665856bb434ab7a",
+      "bytes": 593,
+      "rows": 1
+    },
+    {
+      "path": "reference_outputs/interaction_stability/observed_interaction.csv",
+      "sha256": "69b7025da8435022bfcd22f25b7514f3f651b2256d06f67d0a415c9f55605bd8",
+      "bytes": 719,
+      "rows": 1
+    }
+  ]
+}

@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "Please cite this versioned software and aggregate-results companion when using these materials."
 type: software
 title: "AQ-EEG-reproducibility: Analysis scripts and aggregate results"
-version: 1.0.0
-date-released: 2026-09-05
+version: 1.1.0
+date-released: 2026-09-10
 authors:
   - family-names: Liu
     given-names: Jianyi
@@ -12,8 +12,8 @@ authors:
   - family-names: Ding
     given-names: Xiaobin
 repository-code: "https://github.com/AmadeousSaber/AQ-EEG-reproducibility"
-url: "https://github.com/AmadeousSaber/AQ-EEG-reproducibility/releases/tag/v1.0.0"
-abstract: "Original analysis scripts and test-level/model-level aggregate outputs accompanying research on self-reported attention to detail and resting-state EEG network organization. No participant-level data are distributed."
+url: "https://github.com/AmadeousSaber/AQ-EEG-reproducibility/releases/tag/v1.1.0"
+abstract: "Analysis scripts and aggregate outputs for resting-state EEG and self-reported autistic traits, including revised paired-statistic follow-up models and targeted interaction stability checks. Historical screening results are retained unchanged. No participant-level data are distributed."
 keywords:
   - resting-state EEG
   - autistic traits
